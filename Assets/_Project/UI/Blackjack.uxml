@@ -1,0 +1,77 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <ui:Style src="Blackjack.uss" />
+  <ui:VisualElement name="root" class="app">
+    <ui:VisualElement name="loginScreen" class="screen centered">
+      <ui:VisualElement class="panel login-panel">
+        <ui:Label text="BLACKJACK" class="title" />
+        <ui:Label text="Sign in to your table" class="subtitle" />
+        <ui:TextField name="server" label="Server" value="https://localhost:7093" />
+        <ui:TextField name="email" label="Email" />
+        <ui:TextField name="password" label="Password" is-password-field="true" />
+        <ui:TextField name="twoFactor" label="2FA code (optional)" />
+        <ui:Button name="login" text="Sign in" class="primary" />
+        <ui:Button name="google" text="Continue with Google" />
+        <ui:VisualElement class="row">
+          <ui:Button name="register" text="Create account" />
+          <ui:Button name="restore" text="Retry saved session" />
+        </ui:VisualElement>
+      </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="homeScreen" class="screen centered hidden">
+      <ui:VisualElement class="panel home-panel">
+        <ui:Label text="BLACKJACK" class="title" />
+        <ui:Label name="account" class="subtitle" />
+        <ui:Button name="browseRooms" text="Find a table" class="primary" />
+        <ui:Button name="logout" text="Sign out" />
+        <ui:Button name="quit" text="Quit" />
+      </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="roomsScreen" class="screen centered hidden">
+      <ui:VisualElement class="panel rooms-panel">
+        <ui:VisualElement class="row">
+          <ui:Label text="Tables" class="title grow" />
+          <ui:Button name="refreshRooms" text="Refresh" />
+          <ui:Button name="roomsBack" text="Home" />
+        </ui:VisualElement>
+        <ui:ScrollView name="roomList" class="room-list" />
+        <ui:TextField name="roomName" label="Table name" />
+        <ui:VisualElement class="row">
+          <ui:IntegerField name="capacity" label="Seats" value="5" />
+          <ui:Toggle name="enableChat" label="Chat" value="true" />
+        </ui:VisualElement>
+        <ui:VisualElement class="row">
+          <ui:Button name="createRoom" text="Create and join" class="primary" />
+          <ui:Button name="joinRoom" text="Join by name" />
+        </ui:VisualElement>
+      </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="gameScreen" class="screen game-screen hidden" picking-mode="Ignore">
+      <ui:VisualElement class="toolbar">
+        <ui:Label name="roomTitle" class="grow" />
+        <ui:Button name="toggleChat" text="Chat" />
+        <ui:Button name="rejoin" text="Rejoin" class="hidden" />
+        <ui:Button name="closeRoom" text="Close room" class="hidden" />
+        <ui:Button name="leave" text="Leave" />
+      </ui:VisualElement>
+      <ui:VisualElement class="game-info" picking-mode="Ignore">
+        <ui:Label name="phase" class="subtitle" />
+        <ui:Label name="turnTimer" class="timer" />
+      </ui:VisualElement>
+      <ui:VisualElement class="spacer" picking-mode="Ignore" />
+      <ui:VisualElement class="controls">
+        <ui:Button name="ready" text="Ready" class="primary" />
+        <ui:Button name="hit" text="Hit" />
+        <ui:Button name="stand" text="Stand" />
+        <ui:Button name="refreshState" text="Refresh state" />
+      </ui:VisualElement>
+      <ui:VisualElement name="handLabels" class="hand-labels" picking-mode="Ignore" />
+      <ui:VisualElement name="chatOverlay" class="panel chat-panel hidden">
+        <ui:Label text="Room chat" class="subtitle" />
+        <ui:ScrollView name="messages" class="messages" />
+        <ui:TextField name="chatInput" label="Message" />
+        <ui:Button name="sendChat" text="Send" class="primary" />
+      </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:Label name="status" class="status" />
+  </ui:VisualElement>
+</ui:UXML>

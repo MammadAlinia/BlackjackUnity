@@ -1,0 +1,5 @@
+{
+  "name": "Blackjack.Editor",
+  "references": ["Blackjack.Runtime", "Reflex", "UnityEditor.TestRunner", "UnityEngine.TestRunner"],
+  "includePlatforms": ["Editor"]
+}

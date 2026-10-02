@@ -1,0 +1,46 @@
+.app { flex-grow: 1; color: rgb(239, 243, 238); font-size: 16px; }
+.screen { flex-grow: 1; padding: 24px; background-color: rgb(12, 29, 25); }
+.centered { justify-content: center; align-items: center; }
+.panel { padding: 24px; background-color: rgb(24, 45, 39); border-radius: 12px; border-width: 1px; border-color: rgb(62, 90, 75); }
+.login-panel { width: 480px; max-width: 95%; }
+.home-panel { width: 380px; max-width: 95%; }
+.rooms-panel { width: 760px; max-width: 95%; max-height: 90%; }
+.title { font-size: 30px; -unity-font-style: bold; color: rgb(219, 191, 122); margin-bottom: 12px; }
+.subtitle { font-size: 20px; margin-bottom: 16px; }
+.row, .room-row, .toolbar, .controls { flex-direction: row; align-items: center; }
+.grow, .room-row > Label { flex-grow: 1; }
+.row > * { flex-grow: 1; }
+Button { padding: 10px 16px; margin: 4px; border-width: 1px; border-color: rgb(72, 96, 83); border-radius: 6px; background-color: rgb(34, 57, 48); color: rgb(239, 243, 238); }
+Button:hover { background-color: rgb(49, 77, 63); }
+Button:disabled { color: rgb(127, 147, 134); background-color: rgb(31, 43, 37); }
+Button.primary { background-color: rgb(207, 176, 102); color: rgb(20, 33, 25); -unity-font-style: bold; }
+Button.primary:hover { background-color: rgb(228, 198, 129); }
+TextField, IntegerField, Toggle { margin: 6px 4px; }
+.unity-base-field__label { color: rgb(214, 225, 215); min-width: 135px; }
+.unity-base-text-field__input { color: rgb(239, 243, 238); background-color: rgb(14, 30, 25); padding: 8px; border-radius: 4px; }
+.room-list { height: 280px; margin-bottom: 16px; }
+.room-row { padding: 8px; border-bottom-width: 1px; border-bottom-color: rgb(49, 74, 60); }
+.game-screen { background-color: rgba(0, 0, 0, 0); }
+.toolbar, .controls { padding: 8px; background-color: rgba(12, 29, 25, 0.92); border-radius: 8px; }
+.game-info { align-self: flex-start; margin-top: 12px; padding: 12px; background-color: rgba(12, 29, 25, 0.85); border-radius: 8px; }
+.game-info .subtitle { margin-bottom: 4px; }
+.timer { color: rgb(239, 208, 135); }
+.hand-labels { position: absolute; left: 0; right: 0; top: 0; bottom: 0; }
+.hand-label { position: absolute; width: 180px; translate: -50% -100%; padding: 4px 10px; align-items: center; background-color: rgba(12, 29, 25, 0.92); border-radius: 8px; border-width: 1px; border-color: rgb(62, 90, 75); }
+.hand-label > Label { max-width: 100%; margin: 0; padding: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; -unity-text-align: middle-center; }
+.hand-name { font-size: 16px; height: 20px; -unity-font-style: bold; }
+.hand-score { font-size: 14px; height: 18px; margin-top: 1px; }
+.hand-details { font-size: 11px; height: 14px; margin-top: 1px; color: rgb(181, 199, 188); }
+.local-hand { border-color: rgb(219, 191, 122); }
+.current-hand { border-color: rgb(239, 208, 135); }
+.current-hand > .hand-name { color: rgb(239, 208, 135); }
+.dealer-hand { flex-direction: row; justify-content: center; width: 200px; padding: 4px 10px; }
+.dealer-hand > .hand-name, .dealer-hand > .hand-score { font-size: 14px; height: 18px; }
+.dealer-hand > .hand-score { margin-top: 0; margin-left: 8px; }
+.spacer { flex-grow: 1; }
+.controls { justify-content: center; }
+.chat-panel { position: absolute; right: 24px; top: 90px; width: 380px; max-width: 90%; height: 420px; }
+.messages { flex-grow: 1; margin-bottom: 12px; }
+.messages Label { white-space: normal; margin-bottom: 6px; }
+.status { position: absolute; bottom: 6px; left: 24px; right: 24px; color: rgb(255, 207, 137); white-space: normal; }
+.hidden { display: none; }
