@@ -1,0 +1,6 @@
+{
+  "name": "Blackjack.Runtime",
+  "rootNamespace": "Blackjack",
+  "references": ["Reflex", "UniTask", "LitMotion", "LitMotion.Extensions"],
+  "autoReferenced": true
+}

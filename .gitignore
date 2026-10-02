@@ -112,3 +112,8 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Reproducible integration tools (Unity-generated project files remain ignored).
+/Tools/**/bin/
+/Tools/**/obj/
+!/Tools/**/*.csproj
