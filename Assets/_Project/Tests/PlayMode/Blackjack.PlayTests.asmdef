@@ -1,0 +1,7 @@
+{
+  "name": "Blackjack.PlayTests",
+  "references": ["Blackjack.Runtime"],
+  "overrideReferences": true,
+  "precompiledReferences": ["CardGame.Client.dll", "CardGame.Contracts.dll", "nunit.framework.dll"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}
