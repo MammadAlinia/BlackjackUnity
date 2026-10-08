@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using Blackjack.Services;
+using Cysharp.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace Blackjack.UI
@@ -18,14 +18,14 @@ namespace Blackjack.UI
         bool busy;
         protected ScreenController(UiContext context, string name) { Context = context; View = context.Root.Q(name); }
         protected T Find<T>(string name) where T : VisualElement => View.Q<T>(name);
-        protected void Click(string name, Func<CancellationToken, Task<IResult>> operation)
+        protected void Click(string name, Func<CancellationToken, UniTask<Result>> operation)
         {
             var button = Find<Button>(name);
             Action callback = () => Run(operation);
             button.clicked += callback;
             cleanup.Add(() => button.clicked -= callback);
         }
-        protected async void Run(Func<CancellationToken, Task<IResult>> operation)
+        protected async void Run(Func<CancellationToken, UniTask<Result>> operation)
         {
             if (busy || disposed) return;
             busy = true; var token = Token; View.SetEnabled(false); Context.Status("");

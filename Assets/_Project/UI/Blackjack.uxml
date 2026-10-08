@@ -4,16 +4,12 @@
     <ui:VisualElement name="loginScreen" class="screen centered">
       <ui:VisualElement class="panel login-panel">
         <ui:Label text="BLACKJACK" class="title" />
-        <ui:Label text="Sign in to your table" class="subtitle" />
-        <ui:TextField name="server" label="Server" value="https://localhost:7093" />
+        <ui:Label text="Offline demo sign in" class="subtitle" />
         <ui:TextField name="email" label="Email" />
         <ui:TextField name="password" label="Password" is-password-field="true" />
-        <ui:TextField name="twoFactor" label="2FA code (optional)" />
         <ui:Button name="login" text="Sign in" class="primary" />
-        <ui:Button name="google" text="Continue with Google" />
         <ui:VisualElement class="row">
           <ui:Button name="register" text="Create account" />
-          <ui:Button name="restore" text="Retry saved session" />
         </ui:VisualElement>
       </ui:VisualElement>
     </ui:VisualElement>

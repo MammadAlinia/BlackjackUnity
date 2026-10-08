@@ -1,21 +1,25 @@
-using System.Collections;
-using System.IO;
-using Blackjack.Verification;
+using _Project.Scripts;
 using NUnit.Framework;
-using UnityEngine.TestTools;
+using UnityEngine;
 
 namespace Blackjack.Tests
 {
-    public sealed class IntegrationTests
+    public sealed class OfflineGameplayTests
     {
-        [UnityTest]
-        public IEnumerator TwoUnityClientsPlayChatRestoreAndLogout()
+        [Test]
+        public void OfflinePresenterCreatesNoCardsOrHandBounds()
         {
-            if (!File.Exists("Temp/Blackjack-smoke-server.txt")) Assert.Ignore("Start Tools/SmokeServer before running the live integration test.");
-            var task = IntegrationScenario.RunAsync(File.ReadAllText("Temp/Blackjack-smoke-server.txt").Trim());
-            while (!task.IsCompleted) yield return null;
-            Assert.IsFalse(task.IsFaulted, "The scenario faulted unexpectedly.");
-            Assert.IsTrue(task.Result.Succeed, task.Result.ErrorCode + ": " + task.Result.ErrorMessage);
+            var host = new GameObject("Offline presenter test");
+            try
+            {
+                var presenter = host.AddComponent<Gameplay>();
+                presenter.Render();
+                Assert.AreEqual(0, host.transform.childCount);
+                Assert.IsFalse(presenter.TryGetHandBounds("dealer", out _));
+                presenter.Clear();
+                Assert.AreEqual(0, host.transform.childCount);
+            }
+            finally { Object.DestroyImmediate(host); }
         }
     }
 }

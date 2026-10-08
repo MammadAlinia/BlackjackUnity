@@ -13,6 +13,6 @@ namespace Blackjack.UI
         public UiContext(UIDocument document) => this.document = document;
         public void Go(string screen) => NavigationRequested?.Invoke(screen);
         public void Status(string text) => Root.Q<Label>("status").text = text;
-        public void Report(IResult result) { if (!result.Succeed && result.ErrorCode != "Cancelled") Status(result.ErrorMessage); }
+        public void Report(Result result) { if (!result.Succeed && result.ErrorCode != "Cancelled") Status(result.ErrorMessage); }
     }
 }

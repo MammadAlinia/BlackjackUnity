@@ -1,5 +1,6 @@
-using System.Threading.Tasks;
+using Blackjack._Project.Scripts.Services.Auth;
 using Blackjack.Services;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,9 +12,9 @@ namespace Blackjack.UI
         public HomeController(UiContext context, IAuthenticationService auth) : base(context, "homeScreen")
         {
             this.auth = auth;
-            Click("browseRooms", _ => { context.Go("rooms"); return Task.FromResult(Result.Ok()); });
+            Click("browseRooms", _ => { context.Go("rooms"); return UniTask.FromResult(Result.Ok()); });
             Click("logout", token => auth.LogoutAsync(token));
-            Click("quit", _ => { Application.Quit(); return Task.FromResult(Result.Ok()); });
+            Click("quit", _ => { Application.Quit(); return UniTask.FromResult(Result.Ok()); });
         }
         public override void Refresh() => Find<Label>("account").text = auth.AccountName;
     }

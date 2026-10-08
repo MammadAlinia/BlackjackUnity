@@ -12,11 +12,10 @@
     <Compile Include="$(UnityProject)/Assets/_Project/**/*.cs" Exclude="$(UnityProject)/Assets/_Project/Tests/**/*.cs" />
     <Reference Include="$(UnityEditorRoot)/Data/Managed/UnityEngine/UnityEngine*.dll" />
     <Reference Include="$(UnityEditorRoot)/Data/Managed/UnityEngine/UnityEditor*.dll" />
-    <Reference Include="$(UnityProject)/Assets/Plugins/CardGame/*.dll" />
     <Reference Include="$(UnityEditorRoot)/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/*.dll" />
     <Reference Include="$(UnityProject)/Library/ScriptAssemblies/Reflex.dll" />
-    <Reference Include="$(UnityProject)/Library/ScriptAssemblies/LitMotion*.dll" />
     <Reference Include="$(UnityProject)/Library/ScriptAssemblies/UniTask.dll" />
+    <Reference Include="$(UnityProject)/Library/ScriptAssemblies/LitMotion*.dll" />
     <Reference Include="$(UnityProject)/Library/ScriptAssemblies/Unity.Collections.dll" />
     <Reference Include="$(UnityProject)/Library/ScriptAssemblies/Unity.Mathematics.dll" />
     <Reference Include="$(UnityProject)/Library/ScriptAssemblies/UnityEditor.TestRunner.dll" />

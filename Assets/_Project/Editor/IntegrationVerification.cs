@@ -62,18 +62,12 @@ namespace Blackjack.Editor
                     case "play": EditorApplication.isPlaying = true; break;
                     case "stop": EditorApplication.isPlaying = false; break;
                     case "capture": ScreenCapture.CaptureScreenshot("Temp/blackjack-ui.png"); status.result = "Capture requested"; break;
-                    case "ui-preview": Preview(); break;
                     default: status.result = "Unknown command"; break;
                 }
             }
             catch (Exception exception) { status.result = exception.GetType().Name + ": " + exception.Message; Debug.LogException(exception); }
         }
         static System.Collections.Generic.IEnumerable<string> Names(ITestAdaptor test) => new[] { test.FullName }.Concat(test.Children.SelectMany(Names));
-        static async void Preview()
-        {
-            try { status.result = await Blackjack.Verification.UiPreview.RunAsync(File.ReadAllText("Temp/Blackjack-smoke-server.txt").Trim()); }
-            catch (Exception exception) { status.result = exception.GetType().Name + ": " + exception.Message; Debug.LogException(exception); }
-        }
         static void RunTests(TestMode mode)
         {
             runner.Execute(new ExecutionSettings(new Filter { testMode = mode, assemblyNames = new[] { mode == TestMode.EditMode ? "Blackjack.EditTests" : "Blackjack.PlayTests" } }));

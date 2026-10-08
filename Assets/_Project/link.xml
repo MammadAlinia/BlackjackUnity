@@ -1,12 +1,3 @@
 <linker>
-  <assembly fullname="netstandard" preserve="all" />
-  <assembly fullname="CardGame.Client" preserve="all" />
-  <assembly fullname="CardGame.Contracts" preserve="all" />
   <assembly fullname="Blackjack.Runtime" preserve="all" />
-  <assembly fullname="Microsoft.AspNetCore.SignalR.Client.Core" preserve="all" />
-  <assembly fullname="Microsoft.AspNetCore.SignalR.Protocols.Json" preserve="all" />
-  <assembly fullname="Microsoft.AspNetCore.Http.Connections.Client" preserve="all" />
-  <assembly fullname="Microsoft.Extensions.DependencyInjection" preserve="all" />
-  <assembly fullname="Microsoft.Extensions.DependencyInjection.Abstractions" preserve="all" />
-  <assembly fullname="System.Text.Json" preserve="all" />
 </linker>
