@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 1115424610}
   - component: {fileID: 1115424609}
   - component: {fileID: 1115424611}
+  - component: {fileID: 1115424612}
   m_Layer: 0
   m_Name: SceneScope
   m_TagString: Untagged
@@ -423,6 +424,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Blackjack.Runtime::_Project.Scripts.SceneInstaller
   document: {fileID: 1527741314}
   table: {fileID: 1218794595}
+--- !u!114 &1115424612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115424608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a1b4ac2d4514aa0856db6da789a5f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Blackjack.Runtime::Blackjack._Project.Scripts.Services.Auth.NakamaBootstrap
 --- !u!1 &1218794593
 GameObject:
   m_ObjectHideFlags: 0

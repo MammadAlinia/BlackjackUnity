@@ -3,15 +3,19 @@ using Nakama;
 
 namespace Blackjack.Services.Transport
 {
-    public abstract class NetworkManager<T>
+    public interface INetworkTransport
     {
-        public T Client { get; protected set; }
-        public abstract UniTask<Result<T>> Connect(string[] args);
     }
 
-    public class NakamaTransport : NetworkManager<Nakama.Client>
+    public abstract class NetworkTransport<T> : INetworkTransport
     {
-        public override UniTask<Result<Client>> Connect(string[] args)
+        public T Client { get; protected set; }
+        public abstract UniTask<Result<T>> Connect(params string[] args);
+    }
+
+    public class NakamaTransport : NetworkTransport<Client>
+    {
+        public override UniTask<Result<Client>> Connect(params string[] args)
         {
             Client = new Client(args[0]);
 
