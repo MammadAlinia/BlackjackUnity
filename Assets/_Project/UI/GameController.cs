@@ -1,5 +1,6 @@
 using Blackjack.Services;
 using _Project.Scripts;
+using Blackjack.Services.Room;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -34,7 +35,12 @@ namespace Blackjack.UI
         public override void Show(bool visible)
         {
             base.Show(visible);
-            if (!visible) { handLabels.Clear(); table.Clear(); }
+
+            if (!visible)
+            {
+                handLabels.Clear();
+                table.Clear();
+            }
         }
 
         public override void Refresh()

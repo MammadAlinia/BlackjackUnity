@@ -7,14 +7,7 @@ using UnityEngine;
 namespace Blackjack.Services
 {
 
-    public interface IRoomService
-    {
-        UniTask<Result<string[]>> ListAsync(CancellationToken token = default);
-        UniTask<Result> CreateAsync(string name, bool chat, int capacity, CancellationToken token = default);
-        UniTask<Result> JoinAsync(string name, CancellationToken token = default);
-        UniTask<Result> LeaveAsync(CancellationToken token = default);
-        UniTask<Result> CloseAsync(CancellationToken token = default);
-    }
+   
 
     public interface IGameSessionService
     {
@@ -30,23 +23,7 @@ namespace Blackjack.Services
         UniTask<Result> ReceiveAsync(string message, CancellationToken token = default);
     }
 
-    public sealed class OfflineRoomService : IRoomService
-    {
-        public UniTask<Result<string[]>> ListAsync(CancellationToken token = default) =>
-            UniTask.FromResult(Result.Ok(Array.Empty<string>())); // Mock rooms are always empty.
 
-        public UniTask<Result> CreateAsync(string name, bool chat, int capacity, CancellationToken token = default) =>
-            UniTask.FromResult(Result.Ok()); // Mock success lets the UI open its inert game screen.
-
-        public UniTask<Result> JoinAsync(string name, CancellationToken token = default) =>
-            UniTask.FromResult(Result.Ok()); // Mock success has no membership or game-state effect.
-
-        public UniTask<Result> LeaveAsync(CancellationToken token = default) =>
-            UniTask.FromResult(Result.Ok());
-
-        public UniTask<Result> CloseAsync(CancellationToken token = default) =>
-            UniTask.FromResult(Result.Ok());
-    }
 
     public sealed class OfflineGameSessionService : IGameSessionService
     {

@@ -1,5 +1,6 @@
 using Blackjack._Project.Scripts.Services.Auth;
 using Blackjack.Services;
+using Blackjack.Services.Room;
 using Blackjack.Services.Transport;
 using Reflex.Core;
 using Reflex.Enums;
@@ -13,7 +14,6 @@ namespace _Project.Scripts
         {
             builder.AddNakama();
 
-            Bind<OfflineRoomService>(builder, typeof(IRoomService));
             Bind<OfflineGameSessionService>(builder, typeof(IGameSessionService));
             Bind<OfflineChatService>(builder, typeof(IChatService));
         }
@@ -34,12 +34,22 @@ namespace _Project.Scripts
                     typeof(NetworkTransport<Nakama.Client>)
                 },
                 Lifetime.Singleton, Reflex.Enums.Resolution.Eager);
+
             builder.RegisterType(typeof(AuthNakama), new[]
                 {
                     typeof(IAuthenticationService),
                     typeof(AuthNakama),
                 }, Lifetime.Singleton,
                 Reflex.Enums.Resolution.Eager);
+
+            builder.RegisterType(typeof(NakamaRoomService),
+                new[]
+                {
+                    typeof(IRoomService),
+                    typeof(NakamaRoomService),
+                },
+                Lifetime.Singleton, Reflex.Enums.Resolution.Eager);
+
             return builder;
         }
     }

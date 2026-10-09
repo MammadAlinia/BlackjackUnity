@@ -1,5 +1,6 @@
 using System.Threading;
 using Blackjack.Services;
+using Blackjack.Services.Room;
 using Cysharp.Threading.Tasks;
 using UnityEngine.UIElements;
 
@@ -32,12 +33,15 @@ namespace Blackjack.UI
         {
             var created = await rooms.CreateAsync(Find<TextField>("roomName").value,
                 Find<Toggle>("enableChat").value, Find<IntegerField>("capacity").value, token);
-            return created.Succeed ? await OpenGameAsync(Find<TextField>("roomName").value.Trim(), token) : created;
+
+            if (!created.Succeed)
+                return Result.Fail(created.ErrorCode, created.ErrorMessage);
+            return await OpenGameAsync(created.Value, token);
         }
 
         async UniTask<Result> JoinAsync(CancellationToken token)
         {
-            return await OpenGameAsync(Find<TextField>("roomName").value.Trim(), token);
+            return await OpenGameAsync(Find<TextField>("roomName").value, token);
         }
 
         async UniTask<Result> OpenGameAsync(string name, CancellationToken token)
@@ -51,10 +55,25 @@ namespace Blackjack.UI
         {
             var result = await rooms.ListAsync(token);
             if (!result.Succeed) return Result.Fail(result.ErrorCode, result.ErrorMessage);
+            var details = result.Value;
+
 
             var container = Find<ScrollView>("roomList");
             container.Clear();
-            container.Add(new Label("No offline rooms are available."));
+            if (details.Length == 0) container.Add(new Label("No rooms yet. Create a table below."));
+
+            foreach (var detail in details)
+            {
+                var row = new VisualElement();
+                row.AddToClassList("room-row");
+                row.Add(new Label(detail));
+                Find<TextField>("roomName").value = detail;
+
+                var join = new Button(() => Run(JoinAsync)) { text = "Join" };
+                row.Add(join);
+                container.Add(row);
+            }
+
             return Result.Ok();
         }
     }

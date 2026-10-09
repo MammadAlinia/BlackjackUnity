@@ -1,6 +1,7 @@
 using Blackjack.Services;
 using _Project.Scripts;
 using Blackjack._Project.Scripts.Services.Auth;
+using Blackjack.Services.Room;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
