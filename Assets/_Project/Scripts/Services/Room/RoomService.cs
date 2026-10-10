@@ -30,6 +30,11 @@ namespace Blackjack.Services.Room
         ISocket Channel =>
             _socket ??= Socket.From(_transport.Client);
 
+        public IMatch GetCurrentMatch() => _joinedMatch;
+
+        public event Action<IMatch> joinedMatch;
+        public event Action leftMatch;
+
         public async Task<Result<ISocket>> TryConnectSocket()
         {
             if (Channel.IsConnected)
@@ -67,7 +72,7 @@ namespace Blackjack.Services.Room
             }
             catch (Exception e)
             {
-                return Result<string[]>.Fail( "0", e.Message);
+                return Result<string[]>.Fail("0", e.Message);
             }
 
 
@@ -85,7 +90,7 @@ namespace Blackjack.Services.Room
 
             if (!connected.Succeed)
             {
-                return Result.Fail("", connected.ErrorCode, connected.ErrorMessage);
+                return Result.Fail<string>(connected.ErrorCode, connected.ErrorMessage);
             }
 
             var channel = connected.Value;
@@ -96,7 +101,7 @@ namespace Blackjack.Services.Room
             }
             catch (Exception e)
             {
-                return Result.Fail("", "0", e.Message);
+                return Result.Fail<string>("0", e.Message);
             }
 
 
@@ -124,6 +129,7 @@ namespace Blackjack.Services.Room
             }
 
             _joinedMatch = join;
+            joinedMatch?.Invoke(join);
             return Result.Ok();
         }
 
@@ -144,12 +150,14 @@ namespace Blackjack.Services.Room
                 return Result.Fail("0", e.Message);
             }
 
+            leftMatch?.Invoke();
+
             return Result.Ok();
         }
 
         public UniTask<Result> CloseAsync(CancellationToken token = default)
         {
-            return UniTask.FromResult(Result.Ok());
+            return LeaveAsync(token);
         }
     }
 

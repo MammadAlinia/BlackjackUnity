@@ -15,7 +15,7 @@ namespace Blackjack.Services
 
         public static Result Ok() => new(true, "None", string.Empty);
         public static Result Fail(string code, string message) => new(false, code, message);
-        public static Result<T> Fail<T>(T value, string code, string message) => Result<T>.Fail(code, message);
+        public static Result<T> Fail<T>( string code, string message) => Result<T>.Fail(code, message);
         public static Result<T> Ok<T>(T value) => Result<T>.Ok(value);
     }
 

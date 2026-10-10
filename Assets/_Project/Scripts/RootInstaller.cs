@@ -1,5 +1,6 @@
 using Blackjack._Project.Scripts.Services.Auth;
 using Blackjack.Services;
+using Blackjack.Services.Chat;
 using Blackjack.Services.Room;
 using Blackjack.Services.Transport;
 using Reflex.Core;
@@ -15,7 +16,6 @@ namespace _Project.Scripts
             builder.AddNakama();
 
             Bind<OfflineGameSessionService>(builder, typeof(IGameSessionService));
-            Bind<OfflineChatService>(builder, typeof(IChatService));
         }
 
         static void Bind<T>(ContainerBuilder builder, params System.Type[] contracts) =>
@@ -50,6 +50,12 @@ namespace _Project.Scripts
                 },
                 Lifetime.Singleton, Reflex.Enums.Resolution.Eager);
 
+            builder.RegisterType(typeof(NakamaChatService),
+                new[]
+                {
+                    typeof(IChatService),
+                    typeof(NakamaChatService),
+                }, Lifetime.Singleton, Reflex.Enums.Resolution.Lazy);
             return builder;
         }
     }

@@ -16,12 +16,6 @@ namespace Blackjack.Services
         UniTask<Result> RefreshAsync(CancellationToken token = default);
     }
 
-    public interface IChatService
-    {
-        bool IsAvailable { get; }
-        UniTask<Result> SendAsync(string message, CancellationToken token = default);
-        UniTask<Result> ReceiveAsync(string message, CancellationToken token = default);
-    }
 
 
 
@@ -35,16 +29,5 @@ namespace Blackjack.Services
 
         public UniTask<Result> RefreshAsync(CancellationToken token = default) =>
             UniTask.FromResult(Result.Ok());
-    }
-
-    public sealed class OfflineChatService : IChatService
-    {
-        public bool IsAvailable => true;
-
-        public UniTask<Result> SendAsync(string message, CancellationToken token = default) =>
-            UniTask.FromResult(Result.Ok());
-
-        public UniTask<Result> ReceiveAsync(string message, CancellationToken token = default)
-            => UniTask.FromResult(Result.Ok());
     }
 }

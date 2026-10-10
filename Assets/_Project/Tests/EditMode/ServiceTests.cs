@@ -1,6 +1,7 @@
 using Blackjack.Services;
 using _Project.Scripts;
 using Blackjack._Project.Scripts.Services.Auth;
+using Blackjack.Services.Chat;
 using Blackjack.Services.Room;
 using NUnit.Framework;
 using UnityEditor;
@@ -74,11 +75,12 @@ namespace Blackjack.Tests
                 var roomScreen = new RoomsController(context, rooms);
                 var gameScreen = new GameController(context, rooms, new OfflineGameSessionService(),
                     tableHost.AddComponent<Gameplay>());
-                var chat = new ChatController(context, new OfflineChatService());
+                var chat = new ChatController(context, new ChatService());
                 navigation = new UiNavigation(context, auth, login, home, roomScreen, gameScreen, chat);
 
                 Assert.AreEqual("login", context.ActiveScreen);
-                Assert.IsTrue(auth.LoginAsync(new EmailPassword("player@example.test", "ignored")).GetAwaiter().GetResult().Succeed);
+                Assert.IsTrue(auth.LoginAsync(new EmailPassword("player@example.test", "ignored")).GetAwaiter()
+                    .GetResult().Succeed);
                 Assert.AreEqual("home", context.ActiveScreen);
                 context.Go("rooms");
                 Assert.AreEqual("rooms", context.ActiveScreen);
@@ -111,7 +113,7 @@ namespace Blackjack.Tests
         [Test]
         public void OfflineChatAndGameplayActionsSucceedWithoutProducingState()
         {
-            var chat = new OfflineChatService();
+            var chat = new ChatService();
             var game = new OfflineGameSessionService();
             Assert.IsTrue(chat.IsAvailable);
             Assert.IsTrue(chat.SendAsync("discarded").GetAwaiter().GetResult().Succeed);
